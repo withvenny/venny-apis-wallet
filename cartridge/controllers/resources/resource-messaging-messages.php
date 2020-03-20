@@ -4,8 +4,8 @@
     header('Content-Type: application/json');
 
     //
-    use Core\Connection as Connection;
-    use Core\Token as Token;
+    use Messaging\Connection as Connection;
+    use Messaging\Token as Token;
     use Messaging\Message as Message;
 
     // connect to the PostgreSQL database
