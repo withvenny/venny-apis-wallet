@@ -215,7 +215,7 @@
             $this->pdo = $pdo;
 
             //
-            $this->token = new \Identity\Token($this->pdo);
+            $this->token = new \Messaging\Token($this->pdo);
 
         }
 
