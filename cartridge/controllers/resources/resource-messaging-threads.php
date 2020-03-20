@@ -49,7 +49,7 @@
             
             } catch (\PDOException $e) {
 
-                echo $e->getThread();
+                echo $e->getMessage();
 
             }
 
@@ -77,7 +77,7 @@
 
             } catch (\PDOException $e) {
 
-                echo $e->getThread();
+                echo $e->getMessage();
 
             }
 
@@ -104,7 +104,7 @@
             
             } catch (\PDOException $e) {
 
-                echo $e->getThread();
+                echo $e->getMessage();
 
             }
 
@@ -125,7 +125,7 @@
             
             } catch (\PDOException $e) {
 
-                echo $e->getThread();
+                echo $e->getMessage();
 
             }
 
