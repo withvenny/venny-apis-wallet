@@ -203,7 +203,7 @@
     }
 
     //
-    class Threads {
+    class Thread {
 
         //
         private $pdo;
@@ -557,7 +557,7 @@
     }
 
     //
-    class Messages {
+    class Message {
 
         //
         private $pdo;
