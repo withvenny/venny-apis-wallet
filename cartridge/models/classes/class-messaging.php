@@ -1,7 +1,7 @@
 <?php
 
     //
-    namespace Identity;
+    namespace Messaging;
 
     //
     class Connection {

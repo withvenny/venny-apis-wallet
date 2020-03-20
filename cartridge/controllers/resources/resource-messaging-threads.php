@@ -4,9 +4,9 @@
     header('Content-Type: application/json');
 
     //
-    use Identity\Connection as Connection;
-    use Identity\Token as Token;
-    use Identity\Person as Person;
+    use Messaging\Connection as Connection;
+    use Messaging\Token as Token;
+    use Messaging\Thread as Thread;
 
     // connect to the PostgreSQL database
     $pdo = Connection::get()->connect();
@@ -33,14 +33,14 @@
             try {
 
                 // 
-                $person = new Person($pdo);
+                $thread = new Thread($pdo);
             
                 // insert a stock into the stocks table
-                $id = $person->insertPerson($request);
+                $id = $thread->insertThread($request);
 
                 $request['id'] = $id;
 
-                $results = $person->selectPersons($request);
+                $results = $thread->selectThreads($request);
 
                 $results = json_encode($results);
                 
@@ -49,7 +49,7 @@
             
             } catch (\PDOException $e) {
 
-                echo $e->getMessage();
+                echo $e->getThread();
 
             }
 
@@ -66,10 +66,10 @@
             try {
 
                 // 
-                $person = new Person($pdo);
+                $thread = new Thread($pdo);
 
                 // get all stocks data
-                $results = $person->selectPersons($request);
+                $results = $thread->selectThreads($request);
 
                 $results = json_encode($results);
 
@@ -77,7 +77,7 @@
 
             } catch (\PDOException $e) {
 
-                echo $e->getMessage();
+                echo $e->getThread();
 
             }
 
@@ -89,14 +89,14 @@
             try {
 
                 // 
-                $person = new Person($pdo);
+                $thread = new Thread($pdo);
             
                 // insert a stock into the stocks table
-                $id = $person->updatePerson($request);
+                $id = $thread->updateThread($request);
 
                 $request['id'] = $id;
 
-                $results = $person->selectPersons($request);
+                $results = $thread->selectThreads($request);
 
                 $results = json_encode($results);
 
@@ -104,7 +104,7 @@
             
             } catch (\PDOException $e) {
 
-                echo $e->getMessage();
+                echo $e->getThread();
 
             }
 
@@ -116,16 +116,16 @@
             try {
 
                 // 
-                $person = new Person($pdo);
+                $thread = new Thread($pdo);
             
                 // insert a stock into the stocks table
-                $id = $person->deletePerson($request);
+                $id = $thread->deleteThread($request);
 
                 echo 'The record ' . $id . ' has been deleted';
             
             } catch (\PDOException $e) {
 
-                echo $e->getMessage();
+                echo $e->getThread();
 
             }
 

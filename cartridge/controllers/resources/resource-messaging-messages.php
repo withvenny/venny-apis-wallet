@@ -6,7 +6,7 @@
     //
     use Core\Connection as Connection;
     use Core\Token as Token;
-    use Identity\User as User;
+    use Messaging\Message as Message;
 
     // connect to the PostgreSQL database
     $pdo = Connection::get()->connect();
@@ -32,14 +32,14 @@
             try {
 
                 // 
-                $user = new User($pdo);
+                $message = new Message($pdo);
             
                 // insert a stock into the stocks table
-                $id = $user->insertUser($request);
+                $id = $message->insertMessage($request);
 
                 $request['id'] = $id;
 
-                $results = $user->selectUsers($request);
+                $results = $message->selectMessages($request);
 
                 $results = json_encode($results);
                 
@@ -65,10 +65,10 @@
             try {
 
                 // 
-                $user = new User($pdo);
+                $message = new Message($pdo);
 
                 // get all stocks data
-                $results = $user->selectUsers($request);
+                $results = $message->selectMessages($request);
 
                 $results = json_encode($results);
 
@@ -88,14 +88,14 @@
             try {
 
                 // 
-                $user = new User($pdo);
+                $message = new Message($pdo);
             
                 // insert a stock into the stocks table
-                $id = $user->updateUser($request);
+                $id = $message->updateMessage($request);
 
                 $request['id'] = $id;
 
-                $results = $user->selectUsers($request);
+                $results = $message->selectMessages($request);
 
                 $results = json_encode($results);
 
@@ -115,10 +115,10 @@
             try {
 
                 // 
-                $user = new User($pdo);
+                $message = new Message($pdo);
             
                 // insert a stock into the stocks table
-                $id = $user->deleteUser($request);
+                $id = $message->deleteMessage($request);
 
                 echo 'The record ' . $id . ' has been deleted';
             
