@@ -12,24 +12,20 @@
     if(isset($_REQUEST['token'])) {
 
         //
+        $request['token'] = $_REQUEST['token'];
+
+        //
         if(isset($_REQUEST['app'])) {
 
+            //
             $request['app'] = $_REQUEST['app'];
     
             //
             switch ($_REQUEST['domain']) {
 
                 //
-                case 'signup': require 'controllers/endpoints/endpoint-experience-signup.php'; break;
-                case 'signin': require 'controllers/endpoints/endpoint-experience-signin.php'; break;
-                case 'payment': require 'controllers/endpoints/endpoint-experience-payment.php'; break;
-                case 'products': require 'controllers/endpoints/endpoint-experience-product.php'; break;
-                
-
-                //
-                case 'persons': require 'controllers/endpoints/endpoint-identity-persons.php'; break;
-                case 'users': require 'controllers/endpoints/endpoint-identity-users.php'; break;
-                case 'profiles': require 'controllers/endpoints/endpoint-identity-profiles.php'; break;
+                case 'threads': require 'controllers/resources/resource-messaging-threads.php'; break;
+                case 'messages': require 'controllers/resources/resource-messaging-messages.php'; break;
     
                 //
                 default: header("Location: template-guest-hello.php");
