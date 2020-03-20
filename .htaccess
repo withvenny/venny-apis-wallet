@@ -1,0 +1,17 @@
+#SUPER IMPORTANT
+Header set Access-Control-Allow-Origin "*"
+
+# Routing all traffic to project directory
+RewriteEngine on
+RewriteCond %{REQUEST_URI} !cartridge
+RewriteRule (.*) cartridge/$1 [L]
+
+# Include path for localhost
+php_value include_path ".:/Library/WebServer/Documents/api.messaging.venny.io/catridge:/Library/WebServer/Documents/api.messaging.venny.io/vendor"
+
+# keeps root directory file paths hidden
+Options -Indexes
+
+#API
+RewriteEngine On
+RewriteRule ^v2/([^/]*)(.*)$ controllers/routes/route-global.php?domain=$1$2 [QSA]
