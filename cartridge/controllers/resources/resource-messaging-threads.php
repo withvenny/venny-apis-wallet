@@ -22,7 +22,7 @@
     if(isset($_REQUEST['title'])){$request['title'] = clean($_REQUEST['title']);}
     if(isset($_REQUEST['participants'])){$request['participants'] = clean($_REQUEST['participants']);}
     if(isset($_REQUEST['preview'])){$request['preview'] = clean($_REQUEST['preview']);}
-    if(isset($_REQUEST['profile_id'])){$request['profile_id'] = clean($_REQUEST['profile_id']);}   
+    if(isset($_REQUEST['profile'])){$request['profile'] = clean($_REQUEST['profile']);}   
 
     //
     switch ($_SERVER['REQUEST_METHOD']) {

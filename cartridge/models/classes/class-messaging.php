@@ -233,7 +233,7 @@
             if(isset($request['title'])){$columns.="thread_title,";}
             if(isset($request['participants'])){$columns.="thread_participants,";}
             if(isset($request['preview'])){$columns.="thread_preview,";}
-            if(isset($request['profile_id'])){$columns.="profile_id,";}
+            if(isset($request['profile'])){$columns.="profile_id,";}
 
             $columns.= "app_id,";
             $columns.= "event_id,";
@@ -247,7 +247,7 @@
             if(isset($request['title'])){$values.=":thread_title,";}
             if(isset($request['participants'])){$values.=":thread_participants,";}
             if(isset($request['preview'])){$values.=":thread_preview,";}
-            if(isset($request['profile_id'])){$values.=":profile_id,";}
+            if(isset($request['profile'])){$values.=":profile_id,";}
 
             $values.= ":app_id,";
             $values.= ":event_id,";
@@ -270,7 +270,8 @@
             if(isset($request['title'])){$statement->bindValue('thread_title',$request['title']);}
             if(isset($request['participants'])){$statement->bindValue('thread_participants',$request['participants']);}
             if(isset($request['preview'])){$statement->bindValue('thread_preview',$request['preview']);}
-            if(isset($request['profile_id'])){$statement->bindValue('profile_id',$request['profile_id']);}
+            if(isset($request['profile'])){$statement->bindValue('profile_id',$request['profile']);}
+
             $statement->bindValue(':app_id', $request['app']);
             $statement->bindValue(':event_id', $this->token->event_id());
             $statement->bindValue(':process_id', $this->token->process_id());
@@ -371,7 +372,7 @@
                     if(isset($request['title'])){$refinements.="thread_title"." ILIKE "."'%".$request['title']."%' AND ";}
                     if(isset($request['participants'])){$refinements.="thread_participants"." ILIKE "."'%".$request['participants']."%' AND ";}
                     if(isset($request['preview'])){$refinements.="thread_preview"." ILIKE "."'%".$request['preview']."%' AND ";}
-                    if(isset($request['profile_id'])){$refinements.="profile_id"." ILIKE "."'%".$request['profile_id']."%' AND ";}
+                    if(isset($request['profile'])){$refinements.="profile_id"." ILIKE "."'%".$request['profile_id']."%' AND ";}
 
                     //echo $conditions . 'conditions1<br/>';
                     //echo $refinements . 'refinements1<br/>';
@@ -423,10 +424,9 @@
                             'id' => $row['thread_id'],
                             'attributes' => json_decode($row['thread_attributes']),
                             'title' => $row['thread_title'],
-                            'participants' => $row['thread_participants'],
+                            'participants' => json_decode($row['thread_participants']),
                             'preview' => $row['thread_preview'],
                             'profile_id' => $row['profile_id'],
-                            'app_id' => $row['app_id']
 
                         ];
 
@@ -492,7 +492,7 @@
             if(isset($request['title'])){$set.= " thread_title = :thread_title ";}
             if(isset($request['participants'])){$set.= " thread_participants = :thread_participants ";}
             if(isset($request['preview'])){$set.= " thread_preview = :thread_preview ";}
-            if(isset($request['profile_id'])){$set.= " profile_id = :profile_id ";}
+            if(isset($request['profile'])){$set.= " profile_id = :profile_id ";}
 
             //
             $set = str_replace('  ',',',$set);
@@ -517,8 +517,8 @@
             if(isset($request['title'])){$statement->bindValue(':thread_title', $request['title']);}
             if(isset($request['participants'])){$statement->bindValue(':thread_participants', $request['participants']);}
             if(isset($request['preview'])){$statement->bindValue(':thread_preview', $request['preview']);}
-            if(isset($request['profile_id'])){$statement->bindValue(':profile_id', $request['profile_id']);}
-            if(isset($request['app_id'])){$statement->bindValue(':app_id', $request['app_id']);}
+            if(isset($request['profile'])){$statement->bindValue(':profile_id', $request['profile']);}
+            if(isset($request['app'])){$statement->bindValue(':app_id', $request['app']);}
 
             $statement->bindValue(':id', $id);
 
@@ -569,7 +569,7 @@
             $this->pdo = $pdo;
 
             //
-            $this->token = new \Identity\Token($this->pdo);
+            $this->token = new \Messaging\Token($this->pdo);
 
         }
 
@@ -616,6 +616,7 @@
             if(isset($request['body'])){$statement->bindValue('message_body',$request['body']);}
             if(isset($request['images'])){$statement->bindValue('message_images',$request['images']);}
             if(isset($request['deleted'])){$statement->bindValue('message_deleted',$request['deleted']);}
+            if(isset($request['profile'])){$statement->bindValue('profile_id',$request['profile']);}
             $statement->bindValue(':app_id', $request['app']);
             $statement->bindValue(':event_id', $this->token->event_id());
             $statement->bindValue(':process_id', $this->token->process_id());
@@ -661,8 +662,7 @@
                     message_images,
                     message_deleted
                     thread_ID,
-                    profile_ID,
-                    app_ID
+                    profile_ID
 
                 ";
 
@@ -717,6 +717,7 @@
                     if(isset($request['body'])){$refinements.="message_body"." ILIKE "."'%".$request['body']."%' AND ";}
                     if(isset($request['images'])){$refinements.="message_images"." ILIKE "."'%".$request['images']."%' AND ";}
                     if(isset($request['deleted'])){$refinements.="message_deleted"." ILIKE "."'%".$request['deleted']."%' AND ";}
+                    if(isset($request['profile'])){$refinements.="profile_id"." ILIKE "."'%".$request['profile']."%' AND ";}
 
                     //echo $conditions . 'conditions1<br/>';
                     //echo $refinements . 'refinements1<br/>';
@@ -768,7 +769,7 @@
                             'id' => $row['message_id'],
                             'attributes' => json_decode($row['message_attributes']),
                             'body' => $row['message_body'],
-                            'images' => $row['message_images'],
+                            'images' => json_decode($row['message_images']),
                             'deleted' => $row['message_deleted']
 
                         ];
@@ -842,18 +843,6 @@
             $condition = $table."_id = :id";
             $condition.= " RETURNING " . $table . "_id";
 
-            //echo json_encode($set);
-            //echo json_encode($condition);
-            //exit;
-
-            /**
-             * Update stock based on the specified id
-             * @param int $id
-             * @param string $symbol
-             * @param string $company
-             * @return int
-             */
-
             // sql statement to update a row in the stock table
             $sql = "UPDATE {$domain} SET ";
             $sql.= $set;
@@ -864,7 +853,7 @@
 
             $statement = $this->pdo->prepare($sql);
     
-            // bind values to the statement
+            // 
             if(isset($request['id'])){$statement->bindValue(':message_id', $request['id']);}
             if(isset($request['attributes'])){$statement->bindValue(':message_attributes', $request['attributes']);}
             if(isset($request['body'])){$statement->bindValue(':message_body', $request['body']);}
