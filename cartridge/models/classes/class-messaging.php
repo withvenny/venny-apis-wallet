@@ -339,6 +339,7 @@
                     $conditions.= " WHERE";
                     $conditions.= " " . $prefix . "_id = :id ";
                     $conditions.= " AND active = 1 ";
+                    $conditions.= " AND app_id = `$request['app']` ";
                     $conditions.= " ORDER BY time_finished DESC ";
                     
                     $subset = " LIMIT 1";
@@ -351,7 +352,7 @@
                     
                     //echo json_encode($request['id']);
                     //echo '<br/>';
-                    //echo $sql; exit;
+                    echo $sql; exit;
 
                     //
                     $statement = $this->pdo->prepare($sql);
