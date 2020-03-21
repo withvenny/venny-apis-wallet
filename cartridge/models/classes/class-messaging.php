@@ -380,7 +380,7 @@
                     $conditions.= " WHERE ";
                     $conditions.= $refinements;
                     $conditions.= " active = 1 ";
-                    $conditions.= ' AND app_id = ' . $request['app'] . ' ';
+                    $conditions.= ' AND app_id = \'' . $request['app'] . '\' ';
                     $conditions.= " ORDER BY time_finished DESC ";
                     $subset = " OFFSET {$start}" . " LIMIT {$request['per']}";
                     $sql = "SELECT ";
