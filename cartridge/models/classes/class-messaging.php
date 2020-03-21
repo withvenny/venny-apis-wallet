@@ -372,7 +372,6 @@
                     if(isset($request['title'])){$refinements.="thread_title"." ILIKE "."'%".$request['title']."%' AND ";}
                     if(isset($request['participants'])){$refinements.="thread_participants"." ILIKE "."'%".$request['participants']."%' AND ";}
                     if(isset($request['preview'])){$refinements.="thread_preview"." ILIKE "."'%".$request['preview']."%' AND ";}
-                    if(isset($request['profile'])){$refinements.="profile_id"." ILIKE "."'%".$request['profile']."%' AND ";}
 
                     //echo $conditions . 'conditions1<br/>';
                     //echo $refinements . 'refinements1<br/>';
