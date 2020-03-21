@@ -336,11 +336,11 @@
                 //
                 if(!empty($request['id'])) {
 
-                    $conditions.= " WHERE";
-                    $conditions.= " " . $prefix . "_id = :id ";
-                    $conditions.= " AND active = 1 ";
-                    $conditions.= " AND app_id = `$request['app']` ";
-                    $conditions.= " ORDER BY time_finished DESC ";
+                    $conditions.= ' WHERE ';
+                    $conditions.= ' ' . $prefix . '_id = :id ';
+                    $conditions.= ' AND active = 1 ';
+                    $conditions.= ' AND app_id = "' . $request['app'] . '" ';
+                    $conditions.= ' ORDER BY time_finished DESC ';
                     
                     $subset = " LIMIT 1";
 
