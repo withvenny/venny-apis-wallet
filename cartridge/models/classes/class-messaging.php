@@ -479,6 +479,8 @@
         //
         public function updateThread($request) {
 
+            echo var_dump($request);
+
             //
             $domain = $request['domain'];
             $table = prefixed($domain);
@@ -488,12 +490,12 @@
             $set = "";
 
             // UPDATE OBJECT - SET
-            if(isset($request['id'])){$set.= " thread_id = :thread_id ";}
+            //if(isset($request['id'])){$set.= " thread_id = :thread_id ";}
             if(isset($request['attributes'])){$set.= " thread_attributes = :thread_attributes ";}
             if(isset($request['title'])){$set.= " thread_title = :thread_title ";}
             if(isset($request['participants'])){$set.= " thread_participants = :thread_participants ";}
             if(isset($request['preview'])){$set.= " thread_preview = :thread_preview ";}
-            if(isset($request['profile'])){$set.= " profile_id = :profile_id ";}
+            //if(isset($request['profile'])){$set.= " profile_id = :profile_id ";}
 
             //
             $set = str_replace('  ',',',$set);
@@ -512,8 +514,7 @@
 
             $statement = $this->pdo->prepare($sql);
     
-            // UPDATE OBJECT - BNID VALUES
-            if(isset($request['id'])){$statement->bindValue(':thread_id', $request['id']);}
+            // UPDATE OBJECT - BIND VALUES
             if(isset($request['attributes'])){$statement->bindValue(':thread_attributes', $request['attributes']);}
             if(isset($request['title'])){$statement->bindValue(':thread_title', $request['title']);}
             if(isset($request['participants'])){$statement->bindValue(':thread_participants', $request['participants']);}
