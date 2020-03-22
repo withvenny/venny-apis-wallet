@@ -112,10 +112,12 @@
         }
 
         //
-        public function process_id() {
+        public function process_id($object='obj') {
 
             //
             $id = substr(md5(uniqid(microtime(true),true)),0,13);
+
+            $id = $object.'_'.$id;
 
             //
             return $id;
@@ -125,10 +127,12 @@
         }
         
         //
-        public function event_id() {
+        public function event_id($object='obj') {
 
             //
             $id = substr(md5(uniqid(microtime(true),true)),0,13);
+
+            $id = $object.'_'.$id;
     
             //
             return $id;
