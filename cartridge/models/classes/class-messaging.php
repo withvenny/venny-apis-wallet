@@ -578,7 +578,7 @@
         public function insertMessage($request) {
 
             //generate ID
-            if(!isset($request['id'])){$request['id'] = $this->token->new_id('per');}
+            if(!isset($request['id'])){$request['id'] = $this->token->new_id('msg');}
 
             $columns = "";
 
