@@ -479,8 +479,6 @@
         //
         public function updateThread($request) {
 
-            echo var_dump($request);
-
             //
             $domain = $request['domain'];
             $table = prefixed($domain);

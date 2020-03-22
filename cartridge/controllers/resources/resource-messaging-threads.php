@@ -11,9 +11,6 @@
     // connect to the PostgreSQL database
     $pdo = Connection::get()->connect();
 
-    //
-    echo var_dump($_REQUEST);exit;
-
     // STEP 1. Receive passed variables / information
     if(isset($_REQUEST['app'])){$request['app'] = clean($_REQUEST['app']);}
     if(isset($_REQUEST['domain'])){$request['domain'] = clean($_REQUEST['domain']);}
@@ -90,8 +87,6 @@
         case 'PUT':
 
             try {
-
-                echo var_dump($request);exit;
 
                 // 
                 $thread = new Thread($pdo);
