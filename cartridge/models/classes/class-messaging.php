@@ -603,8 +603,8 @@
             if(isset($request['body'])){$values.=":message_body,";}
             if(isset($request['images'])){$values.=":message_images,";}
             if(isset($request['deleted'])){$values.=":message_deleted,";}
-            if(isset($request['profile'])){$values.=":profile,";}
-            if(isset($request['thread'])){$values.=":thread,";}
+            if(isset($request['profile'])){$values.=":profile_id,";}
+            if(isset($request['thread'])){$values.=":thread_id,";}
 
             $values.= ":app_id,";
             $values.= ":event_id,";
