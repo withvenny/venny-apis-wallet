@@ -88,6 +88,8 @@
 
             try {
 
+                echo var_dump($request);exit;
+
                 // 
                 $thread = new Thread($pdo);
             
