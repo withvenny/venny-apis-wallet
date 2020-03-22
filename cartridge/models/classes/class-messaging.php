@@ -515,12 +515,13 @@
             $statement = $this->pdo->prepare($sql);
     
             // UPDATE OBJECT - BIND VALUES
+            //if(isset($request['id'])){$statement->bindValue(':thread_id', $request['id']);}
             if(isset($request['attributes'])){$statement->bindValue(':thread_attributes', $request['attributes']);}
             if(isset($request['title'])){$statement->bindValue(':thread_title', $request['title']);}
             if(isset($request['participants'])){$statement->bindValue(':thread_participants', $request['participants']);}
             if(isset($request['preview'])){$statement->bindValue(':thread_preview', $request['preview']);}
-            if(isset($request['profile'])){$statement->bindValue(':profile_id', $request['profile']);}
-            if(isset($request['app'])){$statement->bindValue(':app_id', $request['app']);}
+            //if(isset($request['profile'])){$statement->bindValue(':profile_id', $request['profile']);}
+            //if(isset($request['app'])){$statement->bindValue(':app_id', $request['app']);}
 
             $statement->bindValue(':id', $id);
 
