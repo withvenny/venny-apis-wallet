@@ -581,21 +581,31 @@
             if(!isset($request['id'])){$request['id'] = $this->token->new_id('per');}
 
             $columns = "";
+
+            // INSERT OBJECT - COLUMNS
             if(isset($request['id'])){$columns.="message_id,";}		
             if(isset($request['attributes'])){$columns.="message_attributes,";}		
             if(isset($request['body'])){$columns.="message_body,";}		
             if(isset($request['images'])){$columns.="message_images,";}		
             if(isset($request['deleted'])){$columns.="message_deleted,";}
+            if(isset($request['profile'])){$columns.="profile_id,";}
+            if(isset($request['thread'])){$columns.="thread_id,";}
+
             $columns.= "app_id,";
             $columns.= "event_id,";
             $columns.= "process_id";
 
             $values = "";
+
+            // INSERT OBJECT - VALUES
             if(isset($request['id'])){$values.=":message_id,";}
             if(isset($request['attributes'])){$values.=":message_attributes,";}
             if(isset($request['body'])){$values.=":message_body,";}
             if(isset($request['images'])){$values.=":message_images,";}
             if(isset($request['deleted'])){$values.=":message_deleted,";}
+            if(isset($request['profile'])){$values.=":profile,";}
+            if(isset($request['thread'])){$values.=":thread,";}
+
             $values.= ":app_id,";
             $values.= ":event_id,";
             $values.= ":process_id";
@@ -611,13 +621,15 @@
             //
             $statement = $this->pdo->prepare($sql);
             
-            // pass values to the statement
+            // INSERT OBJECT - BIND VALUES
             if(isset($request['id'])){$statement->bindValue('message_id',$request['id']);}
             if(isset($request['attributes'])){$statement->bindValue('message_attributes',$request['attributes']);}
             if(isset($request['body'])){$statement->bindValue('message_body',$request['body']);}
             if(isset($request['images'])){$statement->bindValue('message_images',$request['images']);}
             if(isset($request['deleted'])){$statement->bindValue('message_deleted',$request['deleted']);}
             if(isset($request['profile'])){$statement->bindValue('profile_id',$request['profile']);}
+            if(isset($request['thread'])){$statement->bindValue('thread_id',$request['thread']);}
+
             $statement->bindValue(':app_id', $request['app']);
             $statement->bindValue(':event_id', $this->token->event_id());
             $statement->bindValue(':process_id', $this->token->process_id());
