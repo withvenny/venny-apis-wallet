@@ -673,9 +673,9 @@
                     message_attributes,
                     message_body,
                     message_images,
-                    message_deleted
-                    thread_ID,
-                    profile_ID
+                    message_deleted,
+                    thread_id,
+                    profile_id
 
                 ";
 
