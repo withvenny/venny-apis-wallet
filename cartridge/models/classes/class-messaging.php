@@ -431,7 +431,7 @@
                             'title' => $row['thread_title'],
                             'participants' => json_decode($row['thread_participants']),
                             'preview' => $row['thread_preview'],
-                            'profile_id' => $row['profile_id'],
+                            'profile' => $row['profile_id'],
 
                         ];
 
