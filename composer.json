@@ -15,7 +15,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Commerce\\": "cartridge/models/classes/"
+      "Wallet\\": "cartridge/models/classes/"
     }
   }
 }

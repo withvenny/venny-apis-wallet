@@ -24,8 +24,8 @@
             switch ($_REQUEST['domain']) {
 
                 //
-                case 'orders': require 'controllers/resources/resource-commerce-orders.php'; break;
-                case 'payments': require 'controllers/resources/resource-commerce-payments.php'; break;
+                case 'paymentmethods': require 'controllers/resources/resource-wallet-paymentmethodsorders.php'; break;
+                case 'passes': require 'controllers/resources/resource-wallet-passes.php'; break;
     
                 //
                 default: header("Location: template-guest-hello.php");

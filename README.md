@@ -1,10 +1,10 @@
-<img src="https://github.com/withvenny/venny-apis-commerce-php/blob/master/venny-apis-cover-Commerce.png">
+<img src="https://github.com/withvenny/venny-apis-wallet-php/blob/master/venny-apis-cover-Wallet.png">
 
-# Commerce from Venny
+# Wallet from Venny
 
-A payment & order management API.
+A personalized pass management API.
 
-We believe that ensuring secure transactions against a variety of options is a cornerstone of modern digital experiences.
+We believe that secure, real-time passes can suppliment the physical need for cards and serve as a cornerstone of modern digital experiences.
 
 Using Venny I/O APIs and React Native (via Expo) we'll explore a mobile experience framework you can evolve into your own.
 
