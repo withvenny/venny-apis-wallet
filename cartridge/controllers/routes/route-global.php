@@ -26,7 +26,6 @@
                 //
                 case 'orders': require 'controllers/resources/resource-commerce-orders.php'; break;
                 case 'payments': require 'controllers/resources/resource-commerce-payments.php'; break;
-                case 'wallets': require 'controllers/resources/resource-commerce-wallets.php'; break;
     
                 //
                 default: header("Location: template-guest-hello.php");
